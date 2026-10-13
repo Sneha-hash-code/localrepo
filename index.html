@@ -1,16 +1,583 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sneha | Full Stack Developer &amp; AI Enthusiast</title>
+<meta name="description" content="Portfolio of Sneha — Full Stack Developer, AI Enthusiast and Problem Solver building products from Nepal." />
+
+<!-- Fonts: Space Grotesk (display/headings), Inter (body), JetBrains Mono (code/eyebrows) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p>This is a new repo.</p>
 
-    <p>This is a new feature (dropdown)</p>
+<!-- ============ LOADING SCREEN ============ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__mark">
+    <span>&lt;</span><span class="loader__mark-name">SD</span><span>/&gt;</span>
+  </div>
+  <div class="loader__bar"><span></span></div>
+</div>
 
-    <p>This is a new feature (button)</p>
+<!-- ============ SCROLL PROGRESS BAR ============ -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- ============ CURSOR GLOW (desktop only, JS adds .is-active) ============ -->
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <div class="navbar__inner container">
+    <a href="#home" class="navbar__brand" aria-label="Back to top">
+      <span class="navbar__brand-bracket">&lt;</span>Sneha<span class="navbar__brand-bracket">/&gt;</span>
+    </a>
+
+    <nav class="navbar__nav" id="navMenu" aria-label="Primary">
+      <a href="#home" class="navbar__link is-active" data-nav>Home</a>
+      <a href="#about" class="navbar__link" data-nav>About</a>
+      <a href="#skills" class="navbar__link" data-nav>Skills</a>
+      <a href="#projects" class="navbar__link" data-nav>Projects</a>
+      <a href="#experience" class="navbar__link" data-nav>Experience</a>
+      <a href="#education" class="navbar__link" data-nav>Education</a>
+      <a href="#achievements" class="navbar__link" data-nav>Achievements</a>
+      <a href="#contact" class="navbar__link navbar__link--cta" data-nav>Contact</a>
+    </nav>
+
+    <button class="navbar__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HOME / HERO ============ -->
+  <section class="hero" id="home">
+    <canvas class="hero__particles" id="particles" aria-hidden="true"></canvas>
+    <div class="hero__glow hero__glow--a" aria-hidden="true"></div>
+    <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
+
+    <div class="container hero__grid">
+      <div class="hero__content" data-reveal>
+        <p class="eyebrow">Namaste, I'm</p>
+        <h1 class="hero__name">Sneha Dutta</h1>
+        <p class="hero__role">
+          Full Stack Developer <span class="dot">·</span> AI Enthusiast <span class="dot">·</span> Problem Solver
+        </p>
+
+        <div class="hero__typer" aria-live="polite">
+          <span class="hero__typer-prompt">$</span>
+          <span class="hero__typer-text" id="typerText"></span><span class="hero__typer-cursor">|</span>
+        </div>
+
+        <p class="hero__intro">
+          I design and build full-stack products end to end — from Node &amp; FastAPI backends
+          to polished, responsive interfaces — and I like teaching what I learn along the way
+          through <strong>Zero to Value</strong>. Based in Nepal, shipping for the world.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#projects" class="btn btn--primary" data-ripple>View Projects</a>
+          <button class="btn btn--ghost" id="resumeBtn" data-ripple>Download Resume</button>
+          <a href="#contact" class="btn btn--outline" data-ripple>Contact Me</a>
+        </div>
+      </div>
+
+      <div class="hero__portrait" data-reveal>
+        <div class="portrait">
+          <div class="portrait__ring"></div>
+          <div class="portrait__frame">
+            <svg viewBox="0 0 200 200" class="portrait__avatar" role="img" aria-label="Monogram avatar for Sneha">
+              <defs>
+                <linearGradient id="avatarGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#7C5CFF"/>
+                  <stop offset="100%" stop-color="#00E5FF"/>
+                </linearGradient>
+              </defs>
+              <rect width="200" height="200" rx="100" fill="url(#avatarGrad)" opacity="0.15"/>
+              <text x="50%" y="54%" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-size="72" font-weight="700" fill="url(#avatarGrad)">SD</text>
+            </svg>
+          </div>
+          <span class="portrait__badge portrait__badge--top">React</span>
+          <span class="portrait__badge portrait__badge--right">FastAPI</span>
+          <span class="portrait__badge portrait__badge--bottom">AI/ML</span>
+          <span class="portrait__badge portrait__badge--left">Node.js</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="hero__scroll" aria-label="Scroll to About section">
+      <span class="hero__scroll-line"></span> Scroll
+    </a>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="container">
+      <p class="eyebrow" data-reveal>About</p>
+      <h2 class="section__title" data-reveal>Building things that matter, one commit at a time</h2>
+
+      <div class="about__grid">
+        <div class="about__text" data-reveal>
+          <p>
+            I'm a full-stack developer who loves turning ideas into working products —
+            from a ride-sharing platform for my hometown to an artisan marketplace that
+            gives local craftspeople a storefront online. I care about clean architecture,
+            thoughtful UI, and code that other people can actually read.
+          </p>
+          <p>
+            Lately I'm deep into <strong>artificial intelligence</strong> — experimenting with
+            prompt engineering, AI-assisted tooling, and how AI can genuinely make everyday
+            products smarter rather than just adding a chatbot for the sake of it. I'm just as
+            energized by the problem-solving grind of hackathons as I am by shipping polished
+            side projects and documenting the journey for other beginners.
+          </p>
+          <ul class="about__pillars">
+            <li><span>Web Development</span> — building fast, accessible, full-stack products</li>
+            <li><span>Artificial Intelligence</span> — prompt engineering &amp; AI-powered features</li>
+            <li><span>Problem Solving</span> — debugging, algorithms, and hackathon sprints</li>
+            <li><span>Impactful Products</span> — tools built for real, local use cases</li>
+            <li><span>Continuous Learning</span> — a new stack or concept every few months</li>
+          </ul>
+        </div>
+
+        <div class="about__stats" data-reveal>
+          <div class="stat-card">
+            <span class="stat-card__num" data-count="12">0</span>
+            <span class="stat-card__plus">+</span>
+            <p class="stat-card__label">Projects Completed</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card__num" data-count="5">0</span>
+            <span class="stat-card__plus">+</span>
+            <p class="stat-card__label">Hackathons Participated</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card__num" data-count="20">0</span>
+            <span class="stat-card__plus">+</span>
+            <p class="stat-card__label">Technologies Learned</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="section section--alt" id="skills">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Skills</p>
+      <h2 class="section__title" data-reveal>My toolbox</h2>
+      <p class="section__subtitle" data-reveal>Technologies I reach for when turning an idea into a shipped product.</p>
+
+      <div class="skills__grid" data-reveal>
+
+        <div class="skill-card">
+          <h3 class="skill-card__title">Frontend</h3>
+          <div class="skill-bar" data-skill="HTML" data-level="90">
+            <div class="skill-bar__head"><span>HTML</span><em>90%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="CSS" data-level="88">
+            <div class="skill-bar__head"><span>CSS</span><em>88%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="JavaScript" data-level="85">
+            <div class="skill-bar__head"><span>JavaScript</span><em>85%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="Responsive Design" data-level="90">
+            <div class="skill-bar__head"><span>Responsive Design</span><em>90%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 class="skill-card__title">Backend</h3>
+          <div class="skill-bar" data-skill="Node.js" data-level="82">
+            <div class="skill-bar__head"><span>Node.js</span><em>82%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="Express" data-level="80">
+            <div class="skill-bar__head"><span>Express</span><em>80%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="FastAPI" data-level="78">
+            <div class="skill-bar__head"><span>FastAPI</span><em>78%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="Python" data-level="85">
+            <div class="skill-bar__head"><span>Python</span><em>85%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 class="skill-card__title">Database</h3>
+          <div class="skill-bar" data-skill="MongoDB" data-level="80">
+            <div class="skill-bar__head"><span>MongoDB</span><em>80%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="MySQL" data-level="75">
+            <div class="skill-bar__head"><span>MySQL</span><em>75%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 class="skill-card__title">Tools</h3>
+          <div class="skill-bar" data-skill="Git" data-level="88">
+            <div class="skill-bar__head"><span>Git</span><em>88%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="GitHub" data-level="88">
+            <div class="skill-bar__head"><span>GitHub</span><em>88%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="Figma" data-level="70">
+            <div class="skill-bar__head"><span>Figma</span><em>70%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="VS Code" data-level="95">
+            <div class="skill-bar__head"><span>VS Code</span><em>95%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 class="skill-card__title">Other</h3>
+          <div class="skill-bar" data-skill="REST APIs" data-level="85">
+            <div class="skill-bar__head"><span>REST APIs</span><em>85%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="AI Integration" data-level="75">
+            <div class="skill-bar__head"><span>AI Integration</span><em>75%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+          <div class="skill-bar" data-skill="Prompt Engineering" data-level="80">
+            <div class="skill-bar__head"><span>Prompt Engineering</span><em>80%</em></div>
+            <div class="skill-bar__track"><div class="skill-bar__fill"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Projects</p>
+      <h2 class="section__title" data-reveal>Selected work</h2>
+      <p class="section__subtitle" data-reveal>A mix of full-stack platforms, single-file experiments, and everyday tools.</p>
+
+      <div class="projects__grid" data-reveal>
+
+        <article class="project-card">
+          <div class="project-card__media" data-tone="1">
+            <span class="project-card__tag">Marketplace</span>
+            <svg viewBox="0 0 64 64" class="project-card__icon"><path fill="currentColor" d="M8 20l4-10h40l4 10H8zm0 4h48v4H8v-4zm2 8h44l-3 22a4 4 0 0 1-4 3.5H17a4 4 0 0 1-4-3.5l-3-22zm14 6v10h4V38h-4zm12 0v10h4V38h-4z"/></svg>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">LokArt</h3>
+            <p class="project-card__desc">A multi-vendor artisan marketplace connecting local Nepali craftspeople with buyers online.</p>
+            <div class="project-card__tech">
+              <span>FastAPI</span><span>React</span><span>SQLAlchemy</span><span>JWT Auth</span>
+            </div>
+            <ul class="project-card__features">
+              <li>Role-based vendor &amp; buyer authentication</li>
+              <li>Product catalog with Nepali artisan demo data</li>
+              <li>Dual NPR / USD pricing display</li>
+            </ul>
+            <div class="project-card__actions">
+              <a href="#" class="btn btn--sm btn--outline" data-ripple>GitHub</a>
+              <a href="#" class="btn btn--sm btn--primary" data-ripple>Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__media" data-tone="2">
+            <span class="project-card__tag">AI</span>
+            <svg viewBox="0 0 64 64" class="project-card__icon"><path fill="currentColor" d="M32 4a6 6 0 0 1 6 6v4h6a6 6 0 0 1 6 6v6h4a6 6 0 1 1 0 12h-4v6a6 6 0 0 1-6 6h-6v4a6 6 0 1 1-12 0v-4h-6a6 6 0 0 1-6-6v-6h-4a6 6 0 1 1 0-12h4v-6a6 6 0 0 1 6-6h6v-4a6 6 0 0 1 6-6zm-8 20a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm16 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/></svg>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">KhetAI</h3>
+            <p class="project-card__desc">An AI-assisted farming companion that gives Nepali farmers crop guidance and simple diagnostics.</p>
+            <div class="project-card__tech">
+              <span>Python</span><span>AI Integration</span><span>FastAPI</span><span>React</span>
+            </div>
+            <ul class="project-card__features">
+              <li>Prompt-engineered crop &amp; weather guidance</li>
+              <li>Simple, low-bandwidth friendly interface</li>
+              <li>Localized for Nepali agricultural context</li>
+            </ul>
+            <div class="project-card__actions">
+              <a href="#" class="btn btn--sm btn--outline" data-ripple>GitHub</a>
+              <a href="#" class="btn btn--sm btn--primary" data-ripple>Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__media" data-tone="3">
+            <span class="project-card__tag">Ride Share</span>
+            <svg viewBox="0 0 64 64" class="project-card__icon"><path fill="currentColor" d="M12 36l4-14a6 6 0 0 1 6-4h20a6 6 0 0 1 6 4l4 14v14a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-3H20v3a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3V36zm8-14l-3 11h30l-3-11H20zm-3 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm30 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">Yatra <span class="project-card__sub">(RoutePool)</span></h3>
+            <p class="project-card__desc">A ride-pooling web app for commuters, with live route search, map integration, and geocoded suggestions.</p>
+            <div class="project-card__tech">
+              <span>JavaScript</span><span>Leaflet/Maps</span><span>MERN</span><span>eSewa</span>
+            </div>
+            <ul class="project-card__features">
+              <li>Interactive map with route &amp; pickup selection</li>
+              <li>Geocoding search with live suggestions</li>
+              <li>Local NPR pricing &amp; Nepali payment methods</li>
+            </ul>
+            <div class="project-card__actions">
+              <a href="#" class="btn btn--sm btn--outline" data-ripple>GitHub</a>
+              <a href="#" class="btn btn--sm btn--primary" data-ripple>Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__media" data-tone="4">
+            <span class="project-card__tag">Utility</span>
+            <svg viewBox="0 0 64 64" class="project-card__icon"><path fill="currentColor" d="M32 6c11 6 18 15 18 26a18 18 0 1 1-36 0c0-11 7-20 18-26zm0 34a8 8 0 0 0 8-8c0-4-3-8-8-14-5 6-8 10-8 14a8 8 0 0 0 8 8z"/></svg>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">Weather App</h3>
+            <p class="project-card__desc">A clean weather dashboard with live conditions, forecasts, and city search.</p>
+            <div class="project-card__tech">
+              <span>JavaScript</span><span>REST API</span><span>CSS</span>
+            </div>
+            <ul class="project-card__features">
+              <li>Real-time weather via public API</li>
+              <li>Animated condition icons &amp; gradients</li>
+              <li>Search with recent-city memory</li>
+            </ul>
+            <div class="project-card__actions">
+              <a href="#" class="btn btn--sm btn--outline" data-ripple>GitHub</a>
+              <a href="#" class="btn btn--sm btn--primary" data-ripple>Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__media" data-tone="5">
+            <span class="project-card__tag">Content</span>
+            <svg viewBox="0 0 64 64" class="project-card__icon"><path fill="currentColor" d="M10 8h44a2 2 0 0 1 2 2v44a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2zm4 8v6h20v-6H14zm0 10v6h36v-6H14zm0 10v6h36v-6H14z"/></svg>
+          </div>
+          <div class="project-card__body">
+            <h3 class="project-card__title">News Website</h3>
+            <p class="project-card__desc">A responsive news aggregator pulling live headlines across categories.</p>
+            <div class="project-card__tech">
+              <span>JavaScript</span><span>News API</span><span>HTML/CSS</span>
+            </div>
+            <ul class="project-card__features">
+              <li>Category filters &amp; keyword search</li>
+              <li>Lazy-loaded article images</li>
+              <li>Dark-mode reading experience</li>
+            </ul>
+            <div class="project-card__actions">
+              <a href="#" class="btn btn--sm btn--outline" data-ripple>GitHub</a>
+              <a href="#" class="btn btn--sm btn--primary" data-ripple>Live Demo</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="section section--alt" id="experience">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Experience</p>
+      <h2 class="section__title" data-reveal>Where I've spent my hours</h2>
+
+      <div class="timeline" data-reveal>
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">2025 — Present</span>
+            <h3 class="timeline__title">Hackathon Builder</h3>
+            <p class="timeline__desc">Competed in multiple hackathons, building working full-stack prototypes under time pressure — from ideation to demo.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">2025 — Present</span>
+            <h3 class="timeline__title">Freelance Web Developer</h3>
+            <p class="timeline__desc">Delivered small business websites and landing pages, handling everything from design to deployment.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">2024 — Present</span>
+            <h3 class="timeline__title">Open Source Contributor</h3>
+            <p class="timeline__desc">Contributed fixes and small features to community projects, learning collaborative Git workflows along the way.</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">2024 — Present</span>
+            <h3 class="timeline__title">Personal Projects &amp; Content</h3>
+            <p class="timeline__desc">Built and shipped a steady stream of side projects — LokArt, KhetAI, Yatra and more — while documenting the process through Zero to Value.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section class="section" id="education">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Education</p>
+      <h2 class="section__title" data-reveal>Academic background</h2>
+
+      <div class="timeline timeline--single" data-reveal>
+        <div class="timeline__item">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <span class="timeline__date">In Progress</span>
+            <h3 class="timeline__title">Bachelor in Information Technology (BIT)</h3>
+            <p class="timeline__desc">Coursework spanning programming fundamentals, databases, networking and software engineering — paired with self-driven, project-based learning outside the classroom.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section class="section section--alt" id="achievements">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Achievements</p>
+      <h2 class="section__title" data-reveal>Milestones along the way</h2>
+
+      <div class="achievements__grid" data-reveal>
+        <div class="achieve-card">
+          <div class="achieve-card__icon">🏆</div>
+          <h3>Hackathon Participant</h3>
+          <p>Built and demoed working prototypes across multiple hackathons.</p>
+        </div>
+        <div class="achieve-card">
+          <div class="achieve-card__icon">🌱</div>
+          <h3>Open Source Contributor</h3>
+          <p>Submitted pull requests and fixes to community-driven projects.</p>
+        </div>
+        <div class="achieve-card">
+          <div class="achieve-card__icon">📚</div>
+          <h3>Continuous Learner</h3>
+          <p>Picked up a new stack, framework, or tool every few months.</p>
+        </div>
+        <div class="achieve-card">
+          <div class="achieve-card__icon">🤖</div>
+          <h3>AI Enthusiast</h3>
+          <p>Explores prompt engineering and AI integration in everyday products.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section" id="contact">
+    <div class="container">
+      <p class="eyebrow" data-reveal>Contact</p>
+      <h2 class="section__title" data-reveal>Let's build something</h2>
+      <p class="section__subtitle" data-reveal>Have a project, an idea, or a hackathon team spot open? My inbox is open.</p>
+
+      <div class="contact__grid" data-reveal>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--block" data-ripple>Send Message</button>
+          <p class="contact-form__note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="contact-side">
+          <a class="contact-link" href="mailto:sneha.dev@example.com" data-ripple>
+            <span class="contact-link__icon">✉️</span>
+            <span>
+              <strong>Email</strong>
+              <em>sneha.dev@example.com</em>
+            </span>
+          </a>
+          <a class="contact-link" href="https://github.com/" target="_blank" rel="noopener" data-ripple>
+            <span class="contact-link__icon">🐙</span>
+            <span>
+              <strong>GitHub</strong>
+              <em>github.com/sneha-dev</em>
+            </span>
+          </a>
+          <a class="contact-link" href="https://linkedin.com/" target="_blank" rel="noopener" data-ripple>
+            <span class="contact-link__icon">in</span>
+            <span>
+              <strong>LinkedIn</strong>
+              <em>linkedin.com/in/sneha-dev</em>
+            </span>
+          </a>
+
+          <div class="contact-side__note">
+            <p>Based in Birgañj, Madhesh, Nepal — open to remote work and collaboration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="navbar__brand-bracket">&lt;</span>Sneha<span class="navbar__brand-bracket">/&gt;</span>
+      <p>Full Stack Developer &amp; AI Enthusiast, building from Nepal.</p>
+    </div>
+
+    <nav class="footer__links" aria-label="Footer">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="footer__social">
+      <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">🐙</a>
+      <a href="https://linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+      <a href="mailto:sneha.dev@example.com" aria-label="Email">✉️</a>
+    </div>
+  </div>
+  <div class="footer__bottom container">
+    <p>&copy; <span id="year"></span> Sneha Dutta. All rights reserved.</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<!-- Toast for resume / form feedback -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
